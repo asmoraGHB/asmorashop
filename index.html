@@ -198,7 +198,7 @@
         </div>
     </footer>
 
-    <!-- Script com Lista Completa, Preços Conferidos e Imagens Estáveis -->
+    <!-- Script Corrigido com Proporção Adequada para Exibição das Imagens -->
     <script>
         const allProducts = [
             {
@@ -453,9 +453,9 @@
                 card.onclick = () => openModal(product);
 
                 card.innerHTML = `
-                    <div class="relative bg-slate-100 p-4 flex items-center justify-center overflow-hidden h-52">
+                    <div class="relative bg-white p-4 flex items-center justify-center overflow-hidden h-52 w-full">
                         ${product.desconto ? `<span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-md shadow-sm z-10">${product.desconto}</span>` : ''}
-                        <img src="${product.imagem}" alt="${product.titulo}" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                        <img src="${product.imagem}" alt="${product.titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
                         <div>
