@@ -109,24 +109,7 @@ body * {
   max-width: 100% !important;
 }
 
-/* Correção final para o botão da Loja Oficial e cabeçalho mobile */
-@media (max-width: 768px) {
-  /* Força o cabeçalho a organizar os itens sem empurrar para fora da tela */
-  header, .header-container, nav {
-    flex-wrap: wrap !important;
-    padding: 8px 10px !important;
-    gap: 8px !important;
-  }
 
-  /* Reduz o tamanho e o espaçamento do botão da Loja Oficial para caber na linha */
-  header a[class*="loja"], header button[class*="loja"], a.bg-amber-500, .loja-oficial-btn {
-    font-size: 0.7rem !important;
-    padding: 6px 10px !important;
-    max-width: 150px !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-  }
 }
   </style>
 </head>
