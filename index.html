@@ -202,15 +202,23 @@
     <script>
         let allProducts = [];
 
-        async function loadProducts() {
+       async function loadProducts() {
             try {
-                const response = await fetch('produtos.json');
+                // Tenta carregar o JSON procurando diretamente na raiz do domínio e na pasta relativa
+                let response = await fetch('/produtos.json');
+                if (!response.ok) {
+                    response = await fetch('produtos.json');
+                }
+                if (!response.ok) {
+                    throw new Error("HTTP error! status: " + response.status);
+                }
+                
                 allProducts = await response.json();
                 renderCategories(allProducts);
                 renderProducts(allProducts);
             } catch (error) {
                 console.error("Erro ao carregar produtos:", error);
-                document.getElementById('productGrid').innerHTML = '<p class="col-span-full text-center text-slate-500 py-8">Erro ao carregar o catálogo de produtos. Certifique-se de que o arquivo produtos.json está na raiz do repositório.</p>';
+                document.getElementById('productGrid').innerHTML = '<p class="col-span-full text-center text-slate-500 py-8">Erro ao carregar o catálogo. Por favor, verifique se o arquivo <b>produtos.json</b> está na mesma pasta raiz do index.html no GitHub.</p>';
             }
         }
 
