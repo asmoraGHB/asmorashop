@@ -1,344 +1,540 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASMORA SHOP - Vitrine Oficial</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Estilos e correções de responsividade */
-        html, body { 
-            max-width: 100vw;
-            overflow-x: hidden;
-            box-sizing: border-box;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASMORA SHOP | Utilidades, Casa & Ofertas Exclusivas</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      colors: {
+        brand: {
+          dark: '#081120',
+          navy: '#111827',
+          card: '#1E293B',
+          orange: '#EE4D2D',
+          orangeHover: '#D73211',
+          gold: '#F78733'
         }
-        *, *::before, *::after {
-            box-sizing: inherit;
-        }
-        
-        /* Ajuste do Header Mobile em duas linhas centralizadas */
-        @media (max-width: 768px) {
-            .mobile-header-wrapper {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 8px;
-                padding: 10px 16px;
-            }
-            .mobile-top-row {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
-                gap: 8px;
-            }
-            .mobile-bottom-row {
-                display: flex;
-                justify-content: center;
-                width: 100%;
-            }
-            .btn-loja-oficial-mobile {
-                font-size: 0.75rem !important;
-                padding: 6px 14px !important;
-                white-space: nowrap !important;
-            }
-        }
-    </style>
+      }
+    }
+  }
+}
+</script>
+<style>
+body {
+  background-color: #081120;
+  color: #F8FAFC;
+  overflow-x: hidden;
+}
+.glass-header {
+  background: rgba(11, 17, 32, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.product-card {
+  background: linear-gradient(145deg, #1E293B 0%, #0F172A 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(247, 183, 51, 0.45);
+  box-shadow: 0 20px 35px 10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(247, 183, 51, 0.12);
+}
+.shopee-btn {
+  background: linear-gradient(135deg, #EE4D2D 0%, #FF6533 100%);
+  transition: all 0.25s ease;
+}
+.shopee-btn:hover {
+  background: linear-gradient(135deg, #D73211 0%, #EE4D2D 100%);
+  box-shadow: 0 8px 20px 4px rgba(238, 77, 45, 0.55);
+  transform: scale(1.02);
+}
+.category-pill.active {
+  background: linear-gradient(135deg, #F7B733 0%, #F59E0B 100%);
+  color: #081120;
+  font-weight: 700;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(247, 183, 51, 0.35);
+}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #081120; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+<body class="antialiased min-h-screen flex flex-col">
 
-    <!-- Topo Promocional -->
-    <div class="bg-amber-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
-        🛒 Compra 100% Garantida com Frete Seguro via Loja Oficial na Shopee. 
-        <a href="https://shopee.com.br/asmorashop" target="_blank" class="underline font-bold ml-1 hover:text-slate-100">Visite nossa loja</a>
+<!-- Header / Navbar -->
+<header class="glass-header sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-between py-3.5 gap-4">
+      <!-- Brand Logo -->
+      <a href="#" onclick="resetFilters()" class="flex items-center gap-3 group focus:outline-none">
+        <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-amber-400 via-brand-gold to-orange-500 p-0.5 shadow-md">
+          <div class="w-full h-full bg-brand-dark rounded-[10px] flex items-center justify-center overflow-hidden">
+            <svg class="w-7 h-7 text-brand-gold" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 3L4 10V26L18 33L32 26V10L18 32" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+              <path d="M11 23L18 11L25 23M13.5 19H22.5" stroke="#EE4D2D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="18" cy="7.5" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-tight text-white leading-none">
+            ASMORA <span class="text-brand-gold">SHOP</span>
+          </span>
+          <span class="text-[11px] font-medium text-slate-400 tracking-widest uppercase mt-1">
+            Loja Oficial Shopee Brasil
+          </span>
+        </div>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="w-full md:max-w-md lg:max-w-lg relative">
+        <div class="relative flex items-center">
+          <svg class="w-5 h-5 text-slate-400 absolute left-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Buscar produtos, utilidades, casa, cozinha..." 
+                 class="w-full bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-400 text-sm rounded-full py-2.5 pl-11 pr-10 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all">
+          <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 text-slate-400 hover:text-white">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Shopee Store Badge -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="https://www.shopee.com.br/asmora_shop" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-semibold text-slate-200 hover:text-white hover:border-brand-orange transition-all">
+          <svg class="w-4 h-4 text-brand-orange" fill="currentColor" viewBox="0 0 24 24"><path d="M19.5 7h-2.6C16.5 4.2 14.5 2 12 2s-4.5 2.2-4.9 5H4.5C3.7 7 3 7.7 3 8.5v11C3 20.3 3.7 21 4.5 21h15c.8 0 1.5-.7 1.5-1.5v-11C21 7.7 20.3 7 19.5 7zm-7.5-3c1.4 0 2.6.9 3 2H9c.4-1.1 1.6-2 3-2zm7.5 16H4.5v-10h3v1.5c0 .3.2.5.5.5s.5-.2.5-.5V10h8v1.5c0 .3.2.5.5.5s.5-.2.5-.5V10h3v10z"/></svg>
+          Visitar Loja na Shopee
+        </a>
+      </div>
     </div>
+  </div>
+</header>
 
-    <!-- Cabeçalho Principal -->
-    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-3 mobile-header-wrapper flex items-center justify-between">
-            
-            <!-- Linha Principal / Logo Clicável para a Home -->
-            <div class="mobile-top-row flex items-center gap-4">
-                <a href="index.html" class="flex items-center gap-3 group focus:outline-none">
-                    <div class="bg-white p-1.5 rounded-lg shadow-sm group-hover:scale-105 transition-transform">
-                        <img src="assets/logo.png" alt="Asmora Shop Logo" class="h-8 w-auto object-contain" onerror="this.src='https://via.placeholder.com/40x40?text=AS'">
-                    </div>
-                    <div>
-                        <h1 class="text-white font-black tracking-wider text-lg leading-none">ASMORA</h1>
-                        <span class="text-amber-400 text-xs tracking-widest font-semibold">S H O P</span>
-                    </div>
-                </a>
-
-                <!-- Barra de Pesquisa (Desktop) -->
-                <div class="hidden md:flex flex-1 max-w-md mx-6">
-                    <div class="relative w-full">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
-                            🔍
-                        </span>
-                        <input type="search" id="searchInputDesktop" placeholder="O que você procura hoje?" class="w-full bg-slate-800 text-slate-200 pl-10 pr-4 py-2 rounded-full text-sm border border-slate-700 focus:outline-none focus:border-amber-500 transition-colors">
-                    </div>
-                </div>
-
-                <!-- Ações do Topo -->
-                <div class="flex items-center gap-2">
-                    <a href="https://wa.me/5511947214675" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2.5 rounded-full flex items-center justify-center shadow-sm transition-colors" title="Dúvidas via WhatsApp">
-                        💬 <span class="hidden lg:inline ml-1.5 text-xs font-medium">Dúvidas via WhatsApp</span>
-                    </a>
-                    
-                    <!-- Botão Shopee Desktop -->
-                    <a href="https://shopee.com.br/asmorashop" target="_blank" class="hidden md:inline-flex bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-full text-xs items-center gap-1.5 shadow-sm transition-colors">
-                        LOJA OFICIAL ASMORASHOP ↗
-                    </a>
-                </div>
-            </div>
-
-            <!-- Barra de Pesquisa (Mobile - Linha Intermediária se necessário) -->
-            <div class="w-full md:hidden mt-1">
-                <div class="relative w-full">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
-                        🔍
-                    </span>
-                    <input type="search" id="searchInputMobile" placeholder="Buscar produtos no catálogo..." class="w-full bg-slate-800 text-slate-200 pl-10 pr-4 py-2 rounded-full text-sm border border-slate-700 focus:outline-none focus:border-amber-500">
-                </div>
-            </div>
-
-            <!-- Segunda Linha Mobile para o Botão da Loja Oficial Centralizado -->
-            <div class="mobile-bottom-row md:hidden mt-1">
-                <a href="https://shopee.com.br/asmorashop" target="_blank" class="btn-loja-oficial-mobile bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-1.5 px-4 rounded-full text-xs text-center shadow-sm transition-colors inline-block">
-                    LOJA OFICIAL ASMORASHOP ↗
-                </a>
-            </div>
-
-        </div>
-    </header>
-
-    <!-- Conteúdo Principal -->
-    <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
-        
-        <!-- Banner / Hero da Vitrine -->
-        <section class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl p-6 md:p-8 mb-8 shadow-xl border border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="space-y-3 max-w-xl">
-                <span class="bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/30 uppercase tracking-wider">Vitrine Oficial de Conversión</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight">Produtos incríveis para sua casa, rotina e dia a dia</h2>
-                <p class="text-slate-300 text-sm md:text-base">Selecione seus itens favoritos abaixo e finalize seu pedido com total segurança diretamente na nossa loja oficial na Shopee.</p>
-            </div>
-            <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-xl text-center md:text-right min-w-[260px] shadow-inner">
-                <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">Destaques da Loja</span>
-                <h3 class="font-bold text-lg text-white mb-2">Loja Toda em Oferta</h3>
-                <p class="text-xs text-slate-300 mb-4">Aproveite as ofertas, os cupons de desconto de preço e de frete!</p>
-                <a href="https://shopee.com.br/asmorashop" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs shadow-md transition-all hover:scale-105">
-                    Ir para a Loja Oficial Shopee →
-                </a>
-            </div>
-        </section>
-
-        <!-- Filtros / Categorias -->
-        <div id="categoryFilters" class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 no-scrollbar">
-            <!-- Gerado via JS -->
-        </div>
-
-        <!-- Título da Seção de Produtos -->
-        <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-3">
-            <h3 class="text-xl font-bold text-slate-900">Catálogo de Produtos</h3>
-            <span id="productCount" class="text-xs font-medium text-slate-500">Carregando produtos...</span>
-        </div>
-
-        <!-- Grade de Produtos -->
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Os produtos serão injetados dinamicamente aqui -->
-        </div>
-    </main>
-
-    <!-- Modal de Detalhes do Produto (Popup Compacto e Elegante para PC) -->
-    <div id="productModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-200 max-h-[90vh] flex flex-col md:flex-row">
-            <button onclick="closeModal()" class="absolute top-3 right-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full w-8 h-8 flex items-center justify-center font-bold z-10 transition-colors">
-                ✕
-            </button>
-            <div class="md:w-1/2 bg-slate-100 p-6 flex items-center justify-center">
-                <img id="modalImg" src="" alt="" class="max-h-72 w-auto object-contain rounded-lg shadow-sm">
-            </div>
-            <div class="md:w-1/2 p-6 flex flex-col justify-between overflow-y-auto">
-                <div>
-                    <span id="modalCategory" class="text-xs font-bold text-amber-600 uppercase tracking-wider block mb-1">Categoria</span>
-                    <h4 id="modalTitle" class="text-lg font-bold text-slate-900 mb-2">Nome do Produto</h4>
-                    <div class="flex items-baseline gap-2 mb-4">
-                        <span id="modalPrice" class="text-2xl font-black text-slate-900">R$ 0,00</span>
-                        <span id="modalOldPrice" class="text-sm text-slate-400 line-through">R$ 0,00</span>
-                    </div>
-                    <p id="modalDesc" class="text-slate-600 text-xs leading-relaxed mb-6">Descrição detalhada do produto...</p>
-                </div>
-                <a id="modalShopeeBtn" href="#" target="_blank" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 px-4 rounded-xl text-center text-sm shadow-md transition-colors block">
-                    COMPRAR NA SHOPEE →
-                </a>
-            </div>
-        </div>
+<!-- Hero Banner -->
+<section class="relative overflow-hidden border-b border-slate-800/80 bg-gradient-to-b from-slate-900 via-brand-dark to-slate-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14 relative z-10">
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-4">
+        <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+        Catálogo Oficial Atualizado • Envio Rápido
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        Praticidade, estilo e <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-orange-400">ofertas para sua rotina</span>
+      </h1>
+      <p class="mt-4 text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+        Explore nossa vitrine oficial com utilidades domésticas, organização, cozinha e acessórios selecionados com garantia Shopee.
+      </p>
     </div>
+  </div>
+</section>
 
-    <!-- Rodapé -->
-    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 text-xs mt-12 py-10">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div class="space-y-3">
-                <div class="flex items-center gap-2">
-                    <span class="text-white font-black tracking-wider text-base">ASMORA</span>
-                    <span class="text-amber-400 text-xs tracking-widest font-semibold">SHOP</span>
-                </div>
-                <p class="text-slate-400">ASMORA SHOPPING COMÉRCIO E SERVIÇOS LTDA – CNPJ: 35.121.130/0001-67</p>
-                <p class="text-slate-400">Variedade que combina com você e sua rotina.</p>
-                <p class="text-slate-500">São Paulo - SP | Domínio oficial: asmorashop.com.br</p>
-            </div>
-            <div>
-                <h5 class="text-white font-bold mb-3 uppercase tracking-wider">Canais Oficiais</h5>
-                <ul class="space-y-2">
-                    <li><a href="https://shopee.com.br/asmorashop" target="_blank" class="hover:text-amber-400 transition-colors">› Loja Oficial na Shopee</a></li>
-                    <li><a href="https://www.instagram.com" target="_blank" class="hover:text-amber-400 transition-colors">› Perfil no Instagram</a></li>
-                    <li><a href="https://www.facebook.com" target="_blank" class="hover:text-amber-400 transition-colors">› Perfil no Facebook</a></li>
-                    <li><a href="https://wa.me/5511947214675" target="_blank" class="hover:text-amber-400 transition-colors">› Atendimento via WhatsApp</a></li>
-                </ul>
-            </div>
+<!-- Category Filters & Controls -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4 w-full">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+    <div id="categoryContainer" class="flex items-center gap-2.5 overflow-x-auto pb-2 sm:pb-0">
+      <!-- Injected by JS -->
+    </div>
+    <div class="text-xs font-medium text-slate-400 shrink-0">
+      Exibindo <span id="productCount" class="text-white font-bold">15</span> produtos
+    </div>
+  </div>
+</section>
+
+<!-- Product Grid -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+  <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <!-- Cards injected via JavaScript -->
+  </div>
+
+  <!-- Empty State -->
+  <div id="emptyState" class="hidden text-center py-20">
+    <div class="w-16 h-16 rounded-full bg-slate-800/80 flex items-center justify-center mx-auto mb-4 text-slate-400">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h3 class="text-lg font-bold text-white">Nenhum produto encontrado</h3>
+    <p class="text-slate-400 text-sm mt-1">Tente buscar por outro termo ou limpe os filtros.</p>
+    <button onclick="resetFilters()" class="mt-5 px-5 py-2.5 rounded-full bg-brand-gold text-brand-dark font-bold text-xs hover:bg-amber-400 transition-all">Ver todos os produtos</button>
+  </div>
+</main>
+
+<!-- Product Details Modal -->
+<div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+  <div class="bg-slate-900 border border-slate-700/80 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative transform transition-all">
+    <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-800/90 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      <div class="bg-white p-6 flex items-center justify-center relative min-h-[280px]">
+        <span id="modalDiscount" class="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-brand-orange text-white text-xs font-extrabold shadow">
+          -45% OFF
+        </span>
+        <img id="modalImage" src="" alt="" class="max-h-64 object-contain">
+      </div>
+      <div class="p-6 flex flex-col justify-between">
+        <div>
+          <span id="modalCategory" class="text-[11px] font-bold uppercase tracking-wider text-brand-gold">
+            Categoria
+          </span>
+          <h2 id="modalTitle" class="text-lg font-bold text-white mt-1.5 leading-snug">
+            Titulo do Produto
+          </h2>
+          <p id="modalDescription" class="text-slate-300 text-sm mt-3 leading-relaxed">
+            Descrição detalhada do produto.
+          </p>
         </div>
-        <div class="max-w-7xl mx-auto px-4 border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500">
-            <p>© 2026 ASMORA SHOP. Todos os direitos reservados.</p>
-            <p>Desenvolvido com foco em alta conversão</p>
+        <div class="mt-6 pt-4 border-t border-slate-800">
+          <div class="flex items-baseline gap-2">
+            <span id="modalPriceCurrent" class="text-2xl font-extrabold text-brand-gold">R$ 0,00</span>
+            <span id="modalPriceOriginal" class="text-xs text-slate-400 line-through">R$ 0,00</span>
+          </div>
+          <p class="text-[11px] text-emerald-400 font-medium mt-1 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Em estoque • Envio imediato via Shopee
+          </p>
+          <a id="modalShopeeLink" href="#" target="_blank" rel="noopener noreferrer" class="shopee-btn mt-4 w-full py-3.5 px-4 rounded-xl text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg">
+            <span>Comprar Agora na Shopee</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- Script de Carregamento e Busca Inteligente Abrangente -->
-    <script>
-        let allProducts = [];
+<!-- Footer -->
+<footer class="bg-slate-950 border-t border-slate-800/80 mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-brand-dark border border-brand-gold/40 flex items-center justify-center">
+          <svg class="w-5 h-5 text-brand-gold" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 3L4 10V26L18 33L32 26V10L18 32" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M11 23L18 11L25 23M13.5 19H22.5" stroke="#EE4D2D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <span class="text-base font-extrabold text-white">ASMORA <span class="text-brand-gold">SHOP</span></span>
+          <p class="text-xs text-slate-500">ASMORA SHOPPING COMÉRCIO E SERVIÇOS LTDA • CNPJ: 35.121.130/0001-67</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">Variedade que combina com você e sua rotina.</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-400 text-center md:text-right">
+        Todos os pedidos são processados com segurança através da plataforma oficial Shopee Brasil.<br>
+        &copy; 2026 ASMORA SHOP. São Paulo - SP | Domínio: <strong>asmorashop.com.br</strong>
+      </p>
+    </div>
+  </div>
+</footer>
 
-        async function loadProducts() {
-            try {
-                const response = await fetch('produtos.json');
-                allProducts = await response.json();
-                renderCategories(allProducts);
-                renderProducts(allProducts);
-            } catch (error) {
-                console.error("Erro ao carregar produtos:", error);
-                document.getElementById('productGrid').innerHTML = '<p class="col-span-full text-center text-slate-500 py-8">Erro ao carregar o catálogo de produtos.</p>';
-            }
-        }
+<!-- App Script -->
+<script>
+const catalogData = {
+  categories: ["Todos", "Casa & Iluminação"],
+  products: [
+    {
+      id: "1",
+      title: "Kit 3 Pares De Palmilhas Para Calçados Conforto Em EVA Com Furos Respiráveis PMG",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 29,90",
+      priceCurrent: "R$ 14,90",
+      discount: "-50% OFF",
+      shopeeLink: "https://shopee.com.br/Kit-3-Pares-De-Palmilhas-Para-Cal%C3%A7ados-Conforto-Em-EVA-Com-Furos-Respir%C3%A1veis-PMG-i.1813403414.58220677579",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-82010-mu1154mprn9496"],
+      description: "Kit com 3 pares de palmilhas de conforto em EVA com furos respiráveis, disponíveis nos tamanhos PMG."
+    },
+    {
+      id: "2",
+      title: "Puxador Para Móveis Em Alumínio Concha 128mm Champagne Tings",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 39,90",
+      priceCurrent: "R$ 21,90",
+      discount: "-45% OFF",
+      shopeeLink: "https://shopee.com.br/Puxador-Para-M%C3%B3veis-Em-Alum%C3%ADnio-Concha-128mm-Champagne-Tings-i.1813403414.58272186711",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-82015-mu11k7s0w83h74"],
+      description: "Puxador concha para móveis em alumínio com 128mm na cor champagne da marca Tings. Design moderno e sofisticado."
+    },
+    {
+      id: "3",
+      title: "Adesivo Antiderrapante Para Escadas Banheiro Piso 20 Unidades Transparente Com Espátula",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 49,90",
+      priceCurrent: "R$ 27,90",
+      discount: "-44% OFF",
+      shopeeLink: "https://shopee.com.br/Adesivo-Antiderrapante-Para-Escadas-Banheiro-Piso-20-Unidades-Transparente-Com-Esp%C3%A1tula-i.1813403414.58220658421",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-82016-mu12264zcx7v9a"],
+      description: "Kit com 20 adesivos antiderrapantes transparentes para escadas, banheiros e pisos, acompanhado de espátula."
+    },
+    {
+      id: "4",
+      title: "Galheteiro Azeiteiro De Vidro 250ml Com Bico Dosador Inox Tings",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 45,90",
+      priceCurrent: "R$ 24,90",
+      discount: "-45% OFF",
+      shopeeLink: "https://shopee.com.br/Galheteiro-Azeiteiro-De-Vidro-250ml-Com-Bico-Dosador-Inox-Tings-i.1813403414.58220359876",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-82014-mu127iutj95096"],
+      description: "Galheteiro e azeiteiro de vidro com capacidade de 250ml equipado com bico dosador em aço inox Tings."
+    },
+    {
+      id: "5",
+      title: "Varão Para Cortina Extensivo 80cm a 140cm Simples Em Alumínio Com Ponteiras Branco",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 59,90",
+      priceCurrent: "R$ 32,90",
+      discount: "-45% OFF",
+      shopeeLink: "https://shopee.com.br/Var%C3%A3o-Para-Cortina-Extensivo-80cm-a-140cm-Simples-Em-Alum%C3%ADnio-Com-Ponteiras-Branco-i.1813403414.58271790012",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-820ku-mu12dprg5efu3a"],
+      description: "Varão para cortina extensivo de 80cm a 140cm, modelo simples em alumínio na cor branca com ponteiras."
+    },
+    {
+      id: "6",
+      title: "Capa Para Garrafa Térmica 1 Litro Com Alça E Estampas Variadas Cozinha Prática",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 25,90",
+      priceCurrent: "R$ 14,90",
+      discount: "-42% OFF",
+      shopeeLink: "https://shopee.com.br/Capa-Para-Garrafa-T%C3%A9rmica-1-Litro-Com-Al%C3%A7a-E-Estampas-Variadas-Cozinha-Pr%C3%A1tica-i.1813403414.58220498765",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-82019-mu12k19d26w145"],
+      description: "Capa protetora para garrafa térmica de 1 litro com alça de transporte e estampas variadas."
+    },
+    {
+      id: "7",
+      title: "Acendedor Elétrico De Churrasqueira 1000W / 1500W Resistência Segura E Rápida Bivolt",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 89,90",
+      priceCurrent: "R$ 54,90",
+      discount: "-38% OFF",
+      shopeeLink: "https://shopee.com.br/Acendedor-El%C3%A9trico-De-Churrasqueira-1000W-1500W-Resist%C3%AAncia-Segura-E-R%C3%A1pida-Bivolt-i.1813403414.58272109812",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-82017-mu138x955h61c1"],
+      description: "Acendedor elétrico para churrasqueira com resistência de alta potência, acendimento rápido, seguro e bivolt."
+    },
+    {
+      id: "8",
+      title: "Olho Mágico Para Porta Gadan 200 Graus Prata Ajustável 35 a 60mm Segurança Residencial",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 35,90",
+      priceCurrent: "R$ 19,90",
+      discount: "-45% OFF",
+      shopeeLink: "https://shopee.com.br/Olho-M%C3%A1gico-Para-Porta-Gadan-200-Graus-Prata-Ajust%C3%A1vel-35-a-60mm-Seguran%C3%A7a-Residencial-Comercial-Kit-1-2-ou-3-Unidades-i.1813403414.58219982585",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-820m0-mu13e7snq8e871"],
+      description: "Olho mágico Gadan cor prata com visão de 200 graus e ajuste para portas de 35 a 60mm."
+    },
+    {
+      id: "9",
+      title: "Brinquedo Lançador Blaster Espacial Infantil Com Projetor Astronauta E Spray De Névoa De Água",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 79,90",
+      priceCurrent: "R$ 49,90",
+      discount: "-37% OFF",
+      shopeeLink: "https://shopee.com.br/Brinquedo-Lan%C3%A7ador-Blaster-Espacial-Infantil-Com-Projetor-Astronauta-E-Spray-De-N%C3%A9voa-De-%C3%81gua-4-anos-i.1813403414.58220769000",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-820lw-mugtn3wlhdky40"],
+      description: "Lançador blaster espacial infantil com projetor de astronauta e efeito de spray de névoa de água."
+    },
+    {
+      id: "10",
+      title: "Maçarico Culinário Tings 17cm para Refil de Gás com Ignição Eletrônica e Chama Regulável",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 59,90",
+      priceCurrent: "R$ 34,90",
+      discount: "-42% OFF",
+      shopeeLink: "https://shopee.com.br/Ma%C3%A7arico-Culin%C3%A1rio-Tings-17cm-para-Refil-de-G%C3%A1s-com-Igni%C3%A7%C3%A3o-Eletr%C3%B4nica-e-Chama-Regul%C3%A1vel-i.1813403414.58220781880",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-82019-mugtn3wlmzuq3a"],
+      description: "Maçarico culinário Tings de 17cm compatível com refil de gás com ignição eletrônica e chama regulável."
+    },
+    {
+      id: "11",
+      title: "Dispenser Porta Sabonete Líquido Vidro 500ml Relevo com Válvula Cromada Tings",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 49,90",
+      priceCurrent: "R$ 29,90",
+      discount: "-40% OFF",
+      shopeeLink: "https://shopee.com.br/Dispenser-Porta-Sabonete-L%C3%ADquido-Vidro-500ml-Relevo-com-V%C3%A1lvula-Cromada-Tings-i.1813403414.58271739432",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-820la-muvd3pyaoqv738"],
+      description: "Dispenser porta sabonete líquido de vidro com capacidade de 500ml e válvula cromada Tings."
+    },
+    {
+      id: "12",
+      title: "Luva Descartável Látex Natural Sanro Max 3 Pares Com Pó Proteção Para Limpeza",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 15,90",
+      priceCurrent: "R$ 8,90",
+      discount: "-44% OFF",
+      shopeeLink: "https://shopee.com.br/Luva-Descart%C3%A1vel-L%C3%A1tex-Natural-Sanro-Max-3-Pares-Com-P%C3%B3-Prote%C3%A7%C3%A3o-Para-Limpeza-P-M-G-i.1813403414.58220944880",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-820m1-mujcpuwwef43d5"],
+      description: "Kit com 3 pares de luvas descartáveis de látex natural Sanro Max com pó para limpeza."
+    },
+    {
+      id: "13",
+      title: "Kit Descanso de Panela Madeira de Reflorestamento 25cm Esteira Mad Lar",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 45,90",
+      priceCurrent: "R$ 24,90",
+      discount: "-45% OFF",
+      shopeeLink: "https://shopee.com.br/Kit-2-ou-4-Descanso-de-Panela-Madeira-de-Reflorestamento-25cm-Esteira-Mad-Lar-i.1813403414.58271867848",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-820m4-muwsbeaxv85d87"],
+      description: "Kit descanso de panela em formato de esteira, feitos com madeira de reflorestamento."
+    },
+    {
+      id: "14",
+      title: "Cortina de Pia Cozinha 135x70cm Plast Léo Polietileno Estampa Sortida",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 29,90",
+      priceCurrent: "R$ 16,90",
+      discount: "-43% OFF",
+      shopeeLink: "https://shopee.com.br/Cortina-de-Pia-Cozinha-135x70cm-Plast-L%C3%A9o-Polietileno-Estampa-Sortida-1-Unidade-i.1813403414.58220999582",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-820l4-mujcpuwrd7up25"],
+      description: "Cortina para pia de cozinha com medidas de 135x70cm, fabricada em polietileno pela Plast Léo."
+    },
+    {
+      id: "15",
+      title: "Capa Para Botijão De Gás 13kg Plast Léo Plástico Impermeável Protetor Decorativo",
+      category: "Casa & Iluminação",
+      priceOriginal: "R$ 34,90",
+      priceCurrent: "R$ 18,90",
+      discount: "-46% OFF",
+      shopeeLink: "https://shopee.com.br/Capa-Para-Botij%C3%A3o-De-G%C3%A1s-13kg-Plast-L%C3%A9o-Pl%C3%A1stico-Imperme%C3%A1vel-Protetor-Decorativo-Cozinha-i.1813403414.58271327770",
+      images: ["https://down-br.img.susercontent.com/file/br-11134207-820lu-muoxwwft5ur143"],
+      description: "Capa protetora decorativa e impermeável para botijão de gás de 13kg em plástico da Plast Léo."
+    }
+  ]
+};
 
-        function renderCategories(products) {
-            const categories = ['Todos os Produtos', ...new Set(products.map(p => p.categoria))];
-            const container = document.getElementById('categoryFilters');
-            container.innerHTML = '';
+let currentCategory = "Todos";
+let searchQuery = "";
 
-            categories.forEach((cat, index) => {
-                const btn = document.createElement('button');
-                btn.className = `px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${index === 0 ? 'bg-amber-500 text-slate-950 font-bold shadow-amber-500/20' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'}`;
-                btn.textContent = cat;
-                btn.onclick = () => {
-                    document.querySelectorAll('#categoryFilters button').forEach(b => b.className = 'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200');
-                    btn.className = 'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-amber-500 text-slate-950 font-bold shadow-amber-500/20';
-                    filterByCategory(cat);
-                };
-                container.appendChild(btn);
-            });
-        }
+function renderCategories() {
+  const container = document.getElementById("categoryContainer");
+  container.innerHTML = "";
+  
+  catalogData.categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.className = `category-pill px-4 py-2 rounded-full text-xs font-semibold border border-slate-700/80 bg-slate-900/80 text-slate-300 hover:border-brand-gold transition-all whitespace-nowrap ${currentCategory === cat ? 'active' : ''}`;
+    btn.textContent = cat;
+    btn.onclick = () => {
+      currentCategory = cat;
+      renderCategories();
+      renderProducts();
+    };
+    container.appendChild(btn);
+  });
+}
 
-        function filterByCategory(category) {
-            if (category === 'Todos os Produtos') {
-                renderProducts(allProducts);
-            } else {
-                const filtered = allProducts.filter(p => p.categoria === category);
-                renderProducts(filtered);
-            }
-        }
+function renderProducts() {
+  const grid = document.getElementById("productsGrid");
+  const emptyState = document.getElementById("emptyState");
+  const countEl = document.getElementById("productCount");
+  
+  grid.innerHTML = "";
 
-        // Busca Inteligente Abrangente (Título, Tags, Descrição Curta e Completa)
-        function handleSearch(query) {
-            const term = query.toLowerCase().trim();
-            if (!term) {
-                renderProducts(allProducts);
-                return;
-            }
+  const filtered = catalogData.products.filter(p => {
+    const matchCat = currentCategory === "Todos" || p.category === currentCategory;
+    const matchSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || p.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchCat && matchSearch;
+  });
 
-            const filtered = allProducts.filter(p => {
-                const title = (p.titulo || '').toLowerCase();
-                const category = (p.categoria || '').toLowerCase();
-                const shortDesc = (p.descricaoCurta || '').toLowerCase();
-                const longDesc = (p.descricaoLongo || p.descricao || '').toLowerCase();
-                const tags = Array.isArray(p.tags) ? p.tags.join(' ').toLowerCase() : '';
+  countEl.textContent = filtered.length;
 
-                return title.includes(term) || 
-                       category.includes(term) || 
-                       shortDesc.includes(term) || 
-                       longDesc.includes(term) || 
-                       tags.includes(term);
-            });
+  if (filtered.length === 0) {
+    emptyState.classList.remove("hidden");
+    return;
+  }
+  emptyState.classList.add("hidden");
 
-            renderProducts(filtered);
-        }
+  filtered.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card rounded-2xl overflow-hidden flex flex-col justify-between group cursor-pointer";
+    card.onclick = () => openModal(product);
 
-        document.getElementById('searchInputDesktop').addEventListener('input', (e) => handleSearch(e.target.value));
-        document.getElementById('searchInputMobile').addEventListener('input', (e) => handleSearch(e.target.value));
+    card.innerHTML = `
+      <div>
+        <div class="relative aspect-square bg-slate-900 overflow-hidden flex items-center justify-center p-4">
+          <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-extrabold px-2.5 py-1 rounded shadow">
+            ${product.discount}
+          </span>
+          <img src="${product.images[0]}" alt="${product.title}" class="max-h-full object-contain group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-4 space-y-1.5">
+          <span class="text-[10px] font-bold text-brand-gold uppercase tracking-wider">${product.category}</span>
+          <h3 class="text-xs font-bold text-white line-clamp-2 group-hover:text-brand-gold transition-colors">${product.title}</h3>
+        </div>
+      </div>
+      <div class="p-4 pt-0 space-y-3">
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-extrabold text-brand-gold">${product.priceCurrent}</span>
+          <span class="text-xs text-slate-400 line-through">${product.priceOriginal}</span>
+        </div>
+        <a href="${product.shopeeLink}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="w-full block text-center bg-slate-800 hover:bg-brand-orange text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all">
+          Ver na Shopee
+        </a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
 
-        function renderProducts(products) {
-            const grid = document.getElementById('productGrid');
-            const countEl = document.getElementById('productCount');
-            grid.innerHTML = '';
-            countEl.textContent = `Exibindo ${products.length} produto(s)`;
+function openModal(product) {
+  document.getElementById("modalCategory").textContent = product.category;
+  document.getElementById("modalTitle").textContent = product.title;
+  document.getElementById("modalDescription").textContent = product.description;
+  document.getElementById("modalPriceCurrent").textContent = product.priceCurrent;
+  document.getElementById("modalPriceOriginal").textContent = product.priceOriginal;
+  document.getElementById("modalDiscount").textContent = product.discount;
+  document.getElementById("modalImage").src = product.images[0];
+  document.getElementById("modalShopeeLink").href = product.shopeeLink;
+  
+  const modal = document.getElementById("productModal");
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+}
 
-            if (products.length === 0) {
-                grid.innerHTML = '<p class="col-span-full text-center text-slate-500 py-12">Nenhum produto encontrado com essa palavra-chave.</p>';
-                return;
-            }
+function closeModal() {
+  const modal = document.getElementById("productModal");
+  modal.classList.remove("flex");
+  modal.classList.add("hidden");
+}
 
-            products.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group cursor-pointer';
-                card.onclick = () => openModal(product);
+function resetFilters() {
+  currentCategory = "Todos";
+  searchQuery = "";
+  document.getElementById("searchInput").value = "";
+  document.getElementById("clearSearchBtn").classList.add("hidden");
+  renderCategories();
+  renderProducts();
+}
 
-                card.innerHTML = `
-                    <div class="relative bg-slate-100 p-4 flex items-center justify-center overflow-hidden h-52">
-                        ${product.desconto ? `<span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-md shadow-sm z-10">${product.desconto}</span>` : ''}
-                        <img src="${product.imagem}" alt="${product.titulo}" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-300">
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-                        <div>
-                            <span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider block mb-1">${product.categoria}</span>
-                            <h4 class="font-bold text-slate-900 text-sm line-clamp-2 leading-snug group-hover:text-amber-600 transition-colors">${product.titulo}</h4>
-                        </div>
-                        <div>
-                            <div class="flex items-baseline gap-2 mb-3">
-                                <span class="text-lg font-black text-slate-900">R$ ${product.preco}</span>
-                                ${product.precoAntigo ? `<span class="text-xs text-slate-400 line-through">R$ ${product.precoAntigo}</span>` : ''}
-                            </div>
-                            <a href="${product.linkShopee}" target="_blank" onclick="event.stopPropagation()" class="w-full bg-slate-100 hover:bg-amber-500 text-slate-800 hover:text-slate-950 font-bold py-2 px-3 rounded-xl text-xs text-center block transition-colors">
-                                Ver na Shopee
-                            </a>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
+function clearSearch() {
+  document.getElementById("searchInput").value = "";
+  document.getElementById("clearSearchBtn").classList.add("hidden");
+  searchQuery = "";
+  renderProducts();
+}
 
-        function openModal(product) {
-            document.getElementById('modalImg').src = product.imagem;
-            document.getElementById('modalCategory').textContent = product.categoria;
-            document.getElementById('modalTitle').textContent = product.titulo;
-            document.getElementById('modalPrice').textContent = `R$ ${product.preco}`;
-            document.getElementById('modalOldPrice').textContent = product.precoAntigo ? `R$ ${product.precoAntigo}` : '';
-            document.getElementById('modalDesc').textContent = product.descricaoLongo || product.descricaoCurta || 'Detalhes do produto disponível na nossa loja oficial na Shopee.';
-            document.getElementById('modalShopeeBtn').href = product.linkShopee;
-            
-            document.getElementById('productModal').classList.remove('hidden');
-            document.getElementById('productModal').classList.add('flex');
-        }
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  searchQuery = e.target.value;
+  const clearBtn = document.getElementById("clearSearchBtn");
+  if (searchQuery.length > 0) clearBtn.classList.remove("hidden");
+  else clearBtn.classList.add("hidden");
+  renderProducts();
+});
 
-        function closeModal() {
-            document.getElementById('productModal').classList.add('hidden');
-            document.getElementById('productModal').classList.remove('flex');
-        }
-
-        document.getElementById('productModal').addEventListener('click', (e) => {
-            if (e.target.id === 'productModal') closeModal();
-        });
-
-        loadProducts();
-    </script>
+// Inicialização
+renderCategories();
+renderProducts();
+</script>
 </body>
 </html>
