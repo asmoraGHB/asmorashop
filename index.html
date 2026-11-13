@@ -198,29 +198,113 @@
         </div>
     </footer>
 
-    <!-- Script de Carregamento e Busca Inteligente Abrangente -->
+    <!-- Script com Produtos Embutidos e Busca Inteligente -->
     <script>
-        let allProducts = [];
-
-       async function loadProducts() {
-            try {
-                // Tenta carregar o JSON procurando diretamente na raiz do domínio e na pasta relativa
-                let response = await fetch('/produtos.json');
-                if (!response.ok) {
-                    response = await fetch('produtos.json');
-                }
-                if (!response.ok) {
-                    throw new Error("HTTP error! status: " + response.status);
-                }
-                
-                allProducts = await response.json();
-                renderCategories(allProducts);
-                renderProducts(allProducts);
-            } catch (error) {
-                console.error("Erro ao carregar produtos:", error);
-                document.getElementById('productGrid').innerHTML = '<p class="col-span-full text-center text-slate-500 py-8">Erro ao carregar o catálogo. Por favor, verifique se o arquivo <b>produtos.json</b> está na mesma pasta raiz do index.html no GitHub.</p>';
+        // Lista de produtos embutida diretamente para carregar 100% sem dependências
+        const allProducts = [
+            {
+                "id": 1,
+                "categoria": "Artigos de Cozinha",
+                "titulo": "Kit Utensílios de Cozinha Nylon Preto 4 Peças Cinquetti Colher Concha Espumadeira Espátula",
+                "preco": "15,90",
+                "precoAntigo": "24,55",
+                "desconto": "-40% OFF",
+                "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_795105-MLB74910243542_032024-F.webp",
+                "descricaoCurta": "Kit utensílios de cozinha em nylon preto com 4 peças indispensáveis para o dia a dia.",
+                "descricaoLongo": "Kit utensílios de cozinha nylon preto 4 peças Cinquetti contendo colher, concha, espumadeira e espátula. Resistentes ao calor e seguros para panelas antiaderentes.",
+                "linkShopee": "https://shopee.com.br/asmorashop"
+            },
+            {
+                "id": 2,
+                "categoria": "Brinquedos",
+                "titulo": "Brinquedo Bola Divertida Basquete Rock Ball com Placar Digital Luz e Som Dony Toys",
+                "preco": "55,90",
+                "precoAntigo": "70,47",
+                "desconto": "-21% OFF",
+                "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_821385-MLB76135897213_052024-F.webp",
+                "descricaoCurta": "Brinquedo interativo de basquete Rock Ball com placar digital, luz e som.",
+                "descricaoLongo": "Brinquedo interativo de basquete Rock Ball com placar digital, luz e som da Dony Toys. Diversão garantida para desenvolver a coordenação e agilidade das crianças.",
+                "linkShopee": "https://shopee.com.br/asmorashop"
+            },
+            {
+                "id": 3,
+                "categoria": "Casa e Construção",
+                "titulo": "Soprador Acendedor Manual Para Churrasqueira Clink com Manivela Acendedor de Carvão e Brasa",
+                "preco": "18,99",
+                "precoAntigo": "32,15",
+                "desconto": "-41% OFF",
+                "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_912345-MLB48123456789_F.webp",
+                "descricaoCurta": "Soprador acendedor manual com manivela para churrasqueiras e lareiras.",
+                "descricaoLongo": "Soprador acendedor manual para churrasqueira Clink com manivela. Praticidade para acender carvão e brasa rapidamente sem esforço e sem uso de químicos perigosos.",
+                "linkShopee": "https://shopee.com.br/asmorashop"
+            },
+            {
+                "id": 4,
+                "categoria": "Brinquedos",
+                "titulo": "Brinquedo Inseto Abelha Robótica Divertido Bate e Volta Luz Som Asas Móveis ToyKing Cor Sortida",
+                "preco": "59,90",
+                "precoAntigo": "82,24",
+                "desconto": "-27% OFF",
+                "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_654321-MLB78912345678_F.webp",
+                "descricaoCurta": "Abelha robótica divertida com sistema bate e volta, luzes coloridas e som.",
+                "descricaoLongo": "Brinquedo inseto abelha robótica divertido com função bate e volta, luz, música e asas móveis ToyKing. Cor sortida conforme estoque.",
+                "linkShopee": "https://shopee.com.br/asmorashop"
+            },
+            {
+                "id": 5,
+                "categoria": "Brinquedos",
+                "titulo": "Brinquedo Ovo de Dinossauro Surpresa Choca na Água 6 cm para Colecionar DM Toys",
+                "preco": "22,90",
+                "precoAntigo": "33,90",
+                "desconto": "-32% OFF",
+                "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_112233-MLB71234567890_F.webp",
+                "descricaoCurta": "Ovo surpresa que choca e cresce na água. Colecione diferentes dinossauros!",
+                "descricaoLongo": "Brinquedo ovo de dinossauro surpresa que choca na água (6 cm) da DM Toys. Coloque o ovo na água e veja o dinossaurinho nascer e crescer aos poucos.",
+                "linkShopee": "https://shopee.com.br/asmorashop"
+            },
+            {
+                "id": 6,
+                "categoria": "Artigos de Cozinha",
+                "titulo": "Kit 3 6 ou 9 Agulhas para Desentupir Fogão Limpeza Cores Sortidas Conforme Estoque",
+                "preco": "11,90",
+                "precoAntigo": "15,86",
+                "desconto": "-25% OFF",
+                "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_445566-MLB74567891234_F.webp",
+                "descricaoCurta": "Kit de agulhas práticas para desentupir queimadores de fogão com facilidade.",
+                "descricaoLongo": "Kit com 3, 6 ou 9 agulhas para desentupir fogão. Limpeza rápida e segura dos espirros de gordura nos espigueiros dos queimadores.",
+                "linkShopee": "https://shopee.com.br/asmorashop"
+            },
+            {
+                "id": 7,
+                "categoria": "Artigos de Cozinha",
+                "titulo": "Galheteiro de Vidro com Suporte e Porta Guardanapos 3 Recipientes com Colher",
+                "preco": "24,90",
+                "precoAntigo": "33,20",
+                "desconto": "-25% OFF",
+                "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_778899-MLB76789123456_F.webp",
+                "descricaoCurta": "Galheteiro completo em vidro com suporte, porta-guardanapos e colheres.",
+                "descricaoLongo": "Galheteiro de vidro com suporte e porta guardanapos contendo 3 recipientes com colher para temperos, azeite e vinagre.",
+                "linkShopee": "https://shopee.com.br/asmorashop"
+            },
+            {
+                "id": 8,
+                "categoria": "Casa e Construção",
+                "titulo": "Olho Mágico Para Porta Gadan 200 Graus Prata Ajustável 35 a 60mm Segurança Residencial",
+                "preco": "17,90",
+                "precoAntigo": "27,54",
+                "desconto": "-35% OFF",
+                "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_990011-MLB78901234567_F.webp",
+                "descricaoCurta": "Olho mágico de alta visibilidade 200 graus para segurança de portas residenciais.",
+                "descricaoLongo": "Olho mágico para porta Gadan com visão de 200 graus na cor prata, ajustável de 35 a 60mm para maior segurança residencial.",
+                "linkShopee": "https://shopee.com.br/asmorashop"
             }
-        }
+        ];
+
+        // Inicialização automática da vitrine
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCategories(allProducts);
+            renderProducts(allProducts);
+        });
 
         function renderCategories(products) {
             const categories = ['Todos os Produtos', ...new Set(products.map(p => p.categoria))];
@@ -261,13 +345,7 @@
                 const category = (p.categoria || '').toLowerCase();
                 const shortDesc = (p.descricaoCurta || '').toLowerCase();
                 const longDesc = (p.descricaoLongo || p.descricao || '').toLowerCase();
-                const tags = Array.isArray(p.tags) ? p.tags.join(' ').toLowerCase() : '';
-
-                return title.includes(term) || 
-                       category.includes(term) || 
-                       shortDesc.includes(term) || 
-                       longDesc.includes(term) || 
-                       tags.includes(term);
+                return title.includes(term) || category.includes(term) || shortDesc.includes(term) || longDesc.includes(term);
             });
 
             renderProducts(filtered);
@@ -337,8 +415,6 @@
         document.getElementById('productModal').addEventListener('click', (e) => {
             if (e.target.id === 'productModal') closeModal();
         });
-
-        loadProducts();
     </script>
 </body>
 </html>
