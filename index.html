@@ -15,6 +15,7 @@
         *, *::before, *::after {
             box-sizing: inherit;
         }
+        
         /* Ajuste do Header Mobile em duas linhas centralizadas */
         @media (max-width: 768px) {
             .mobile-header-wrapper {
@@ -42,14 +43,6 @@
                 white-space: nowrap !important;
             }
         }
-        /* Ocultar barra de rolagem dos filtros mantendo funcionalidade */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
@@ -57,7 +50,7 @@
     <!-- Topo Promocional -->
     <div class="bg-amber-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
         🛒 Compra 100% Garantida com Frete Seguro via Loja Oficial na Shopee. 
-        <a href="https://shopee.com.br/asmorashop" target="_blank" class="underline font-bold ml-1 hover:text-slate-100">Visitar Loja ↗</a>
+        <a href="https://shopee.com.br/asmorashop" target="_blank" class="underline font-bold ml-1 hover:text-slate-100">Visite nossa loja</a>
     </div>
 
     <!-- Cabeçalho Principal -->
@@ -65,10 +58,10 @@
         <div class="max-w-7xl mx-auto px-4 py-3 mobile-header-wrapper flex items-center justify-between">
             
             <!-- Linha Principal / Logo Clicável para a Home -->
-            <div class="mobile-top-row flex items-center gap-4">
+            <div class="mobile-top-row flex items-center gap-4 w-full md:w-auto justify-between">
                 <a href="index.html" class="flex items-center gap-3 group focus:outline-none">
-                    <div class="bg-white p-1.5 rounded-lg shadow-sm group-hover:scale-105 transition-transform">
-                        <img src="assets/logo.png" alt="Asmora Shop Logo" class="h-8 w-auto object-contain">
+                    <div class="bg-white p-1.5 rounded-lg shadow-sm group-hover:scale-105 transition-transform flex items-center justify-center min-w-[40px] min-h-[40px]">
+                        <img src="assets/logo.png" alt="Asmora Shop Logo" class="h-8 w-auto object-contain" onerror="this.onerror=null; this.src='logo.png';">
                     </div>
                     <div>
                         <h1 class="text-white font-black tracking-wider text-lg leading-none">ASMORA</h1>
@@ -76,38 +69,38 @@
                     </div>
                 </a>
 
-                <!-- Barra de Pesquisa (Desktop) -->
-                <div class="hidden md:flex flex-1 max-w-md mx-6">
-                    <div class="relative w-full">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">🔍</span>
-                        <input type="search" id="searchInputDesktop" placeholder="O que você procura hoje?" class="w-full pl-10 pr-4 py-2 bg-slate-800 text-white text-sm rounded-xl border border-slate-700 focus:outline-none focus:border-amber-500 transition-colors">
-                    </div>
-                </div>
-
-                <!-- Ações do Topo -->
-                <div class="flex items-center gap-2">
-                    <a href="https://wa.me/5511947214675" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2 md:px-3 md:py-2 rounded-xl text-xs font-semibold flex items-center transition-colors shadow-sm">
-                        💬 <span class="hidden lg:inline ml-1.5 text-xs font-medium">WhatsApp</span>
-                    </a>
-                    <!-- Botão Shopee Desktop -->
-                    <a href="https://shopee.com.br/asmorashop" target="_blank" class="hidden md:inline-flex bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs items-center gap-1 transition-colors shadow-sm">
-                        LOJA OFICIAL SHOPEE ↗
+                <!-- Ações do Topo Mobile (WhatsApp) -->
+                <div class="flex items-center gap-2 md:hidden">
+                    <a href="https://wa.me/5511947214675" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2.5 rounded-full flex items-center justify-center shadow-sm transition-colors" title="Dúvidas via WhatsApp">
+                        💬
                     </a>
                 </div>
             </div>
 
-            <!-- Barra de Pesquisa (Mobile) -->
-            <div class="w-full md:hidden mt-1">
+            <!-- Barra de Pesquisa (Desktop e Mobile) -->
+            <div class="w-full md:flex-1 md:max-w-md md:mx-6 my-1 md:my-0">
                 <div class="relative w-full">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">🔍</span>
-                    <input type="search" id="searchInputMobile" placeholder="Buscar produtos no catálogo..." class="w-full pl-10 pr-4 py-2 bg-slate-800 text-white text-xs rounded-xl border border-slate-700 focus:outline-none focus:border-amber-500">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                        🔍
+                    </span>
+                    <input type="search" id="searchInput" placeholder="O que você procura hoje?" class="w-full bg-slate-800 text-slate-200 pl-10 pr-4 py-2 rounded-full text-sm border border-slate-700 focus:outline-none focus:border-amber-500 transition-colors">
                 </div>
+            </div>
+
+            <!-- Ações do Topo Desktop -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="https://wa.me/5511947214675" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-full flex items-center gap-1.5 text-xs font-medium shadow-sm transition-colors" title="Dúvidas via WhatsApp">
+                    💬 Dúvidas via WhatsApp
+                </a>
+                <a href="https://shopee.com.br/asmorashop" target="_blank" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-full text-xs items-center gap-1.5 shadow-sm transition-colors inline-flex">
+                    LOJA OFICIAL ASMORASHOP ↗
+                </a>
             </div>
 
             <!-- Segunda Linha Mobile para o Botão da Loja Oficial Centralizado -->
             <div class="mobile-bottom-row md:hidden mt-1">
-                <a href="https://shopee.com.br/asmorashop" target="_blank" class="btn-loja-oficial-mobile bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow-sm">
-                    LOJA OFICIAL SHOPEE ↗
+                <a href="https://shopee.com.br/asmorashop" target="_blank" class="btn-loja-oficial-mobile bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-1.5 px-4 rounded-full text-xs text-center shadow-sm transition-colors inline-block">
+                    LOJA OFICIAL ASMORASHOP ↗
                 </a>
             </div>
 
@@ -118,17 +111,17 @@
     <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
         
         <!-- Banner / Hero da Vitrine -->
-        <section class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl p-6 md:p-8 mb-8 shadow-xl flex flex-col md:flex-row justify-between items-center gap-6">
+        <section class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl p-6 md:p-8 mb-8 shadow-xl border border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="space-y-3 max-w-xl">
-                <span class="bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/30 inline-block">Vitrine Inteligente ASMORA SHOP</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight">Produtos incríveis para sua casa, rotina e lazer.</h2>
-                <p class="text-slate-300 text-sm md:text-base">Selecione seus itens favoritos abaixo e finalize sua compra com segurança na nossa loja oficial na Shopee.</p>
+                <span class="bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/30 uppercase tracking-wider">Vitrine Oficial de Conversão</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight">Produtos incríveis para sua casa, rotina e dia a dia</h2>
+                <p class="text-slate-300 text-sm md:text-base">Selecione seus itens favoritos abaixo e finalize seu pedido com total segurança diretamente na nossa loja oficial na Shopee.</p>
             </div>
-            <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-xl text-center md:text-right min-w-[260px] shadow-md">
-                <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">Destaques da Plataforma</span>
+            <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-xl text-center md:text-right min-w-[260px] shadow-inner">
+                <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">Destaques da Loja</span>
                 <h3 class="font-bold text-lg text-white mb-2">Loja Toda em Oferta</h3>
-                <p class="text-xs text-slate-300 mb-4">Aproveite cupons de frete grátis e descontos exclusivos.</p>
-                <a href="https://shopee.com.br/asmorashop" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-xl transition-colors shadow-sm">
+                <p class="text-xs text-slate-300 mb-4">Aproveite as ofertas, os cupons de desconto de preço e de frete!</p>
+                <a href="https://shopee.com.br/asmorashop" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs shadow-md transition-all hover:scale-105">
                     Ir para a Loja Oficial Shopee →
                 </a>
             </div>
@@ -145,23 +138,22 @@
             <span id="productCount" class="text-xs font-medium text-slate-500">Carregando produtos...</span>
         </div>
 
-        <!-- Grade de Produtos (Tamanho de Layout Padronizado) -->
+        <!-- Grade de Produtos -->
         <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Os produtos serão injetados dinamicamente aqui via JS -->
+            <!-- Os produtos serão injetados dinamicamente aqui -->
         </div>
-
     </main>
 
     <!-- Modal de Detalhes do Produto (Popup Compacto e Elegante para PC) -->
     <div id="productModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative flex flex-col md:flex-row animate-in fade-in zoom-in-95 duration-200">
-            <button onclick="closeModal()" class="absolute top-3 right-3 bg-slate-100 hover:bg-slate-200 text-slate-700 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm z-10 transition-colors">
+        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-200 max-h-[90vh] flex flex-col md:flex-row">
+            <button onclick="closeModal()" class="absolute top-3 right-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full w-8 h-8 flex items-center justify-center font-bold z-10 transition-colors">
                 ✕
             </button>
             <div class="md:w-1/2 bg-slate-100 p-6 flex items-center justify-center">
                 <img id="modalImg" src="" alt="" class="max-h-72 w-auto object-contain rounded-lg shadow-sm">
             </div>
-            <div class="md:w-1/2 p-6 flex flex-col justify-between overflow-y-auto max-h-[80vh]">
+            <div class="md:w-1/2 p-6 flex flex-col justify-between overflow-y-auto">
                 <div>
                     <span id="modalCategory" class="text-xs font-bold text-amber-600 uppercase tracking-wider block mb-1">Categoria</span>
                     <h4 id="modalTitle" class="text-lg font-bold text-slate-900 mb-2">Nome do Produto</h4>
@@ -171,7 +163,7 @@
                     </div>
                     <p id="modalDesc" class="text-slate-600 text-xs leading-relaxed mb-6">Descrição detalhada do produto...</p>
                 </div>
-                <a id="modalShopeeBtn" href="#" target="_blank" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs py-3 px-4 rounded-xl text-center transition-colors shadow-sm block">
+                <a id="modalShopeeBtn" href="#" target="_blank" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 px-4 rounded-xl text-center text-sm shadow-md transition-colors block">
                     COMPRAR NA SHOPEE →
                 </a>
             </div>
@@ -193,10 +185,10 @@
             <div>
                 <h5 class="text-white font-bold mb-3 uppercase tracking-wider">Canais Oficiais</h5>
                 <ul class="space-y-2">
-                    <li><a href="https://shopee.com.br/asmorashop" target="_blank" class="hover:text-amber-400 transition-colors">Loja Oficial Shopee</a></li>
-                    <li><a href="https://www.instagram.com/asmorashop" target="_blank" class="hover:text-amber-400 transition-colors">Instagram @asmorashop</a></li>
-                    <li><a href="https://www.facebook.com" target="_blank" class="hover:text-amber-400 transition-colors">Facebook ASMORA SHOP</a></li>
-                    <li><a href="https://wa.me/5511947214675" target="_blank" class="hover:text-amber-400 transition-colors">WhatsApp Oficial (11) 94721-4675</a></li>
+                    <li><a href="https://shopee.com.br/asmorashop" target="_blank" class="hover:text-amber-400 transition-colors">› Loja Oficial na Shopee</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" class="hover:text-amber-400 transition-colors">› Perfil no Instagram</a></li>
+                    <li><a href="https://www.facebook.com" target="_blank" class="hover:text-amber-400 transition-colors">› Perfil no Facebook</a></li>
+                    <li><a href="https://wa.me/5511947214675" target="_blank" class="hover:text-amber-400 transition-colors">› Atendimento via WhatsApp</a></li>
                 </ul>
             </div>
         </div>
@@ -206,7 +198,7 @@
         </div>
     </footer>
 
-    <!-- Script de Carregamento e Lógica -->
+    <!-- Script de Carregamento e Busca Inteligente Abrangente -->
     <script>
         let allProducts = [];
 
@@ -218,7 +210,7 @@
                 renderProducts(allProducts);
             } catch (error) {
                 console.error("Erro ao carregar produtos:", error);
-                document.getElementById('productGrid').innerHTML = '<p class="col-span-full text-center text-slate-500 py-12">Erro ao carregar o catálogo. Verifique o arquivo produtos.json.</p>';
+                document.getElementById('productGrid').innerHTML = '<p class="col-span-full text-center text-slate-500 py-8">Erro ao carregar o catálogo de produtos. Certifique-se de que o arquivo produtos.json está na raiz do repositório.</p>';
             }
         }
 
@@ -226,16 +218,14 @@
             const categories = ['Todos os Produtos', ...new Set(products.map(p => p.categoria))];
             const container = document.getElementById('categoryFilters');
             container.innerHTML = '';
-            
-            categories.forEach((cat) => {
+
+            categories.forEach((cat, index) => {
                 const btn = document.createElement('button');
-                btn.className = `px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${cat === 'Todos os Produtos' ? 'bg-amber-500 text-slate-950 font-bold' : 'bg-white text-slate-700 hover:bg-slate-200 border border-slate-200'}`;
+                btn.className = `px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${index === 0 ? 'bg-amber-500 text-slate-950 font-bold shadow-amber-500/20' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'}`;
                 btn.textContent = cat;
                 btn.onclick = () => {
-                    document.querySelectorAll('#categoryFilters button').forEach(b => {
-                        b.className = 'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-200 border border-slate-200 shadow-sm';
-                    });
-                    btn.className = 'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-amber-500 text-slate-950 font-bold shadow-sm';
+                    document.querySelectorAll('#categoryFilters button').forEach(b => b.className = 'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200');
+                    btn.className = 'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-amber-500 text-slate-950 font-bold shadow-amber-500/20';
                     filterByCategory(cat);
                 };
                 container.appendChild(btn);
@@ -251,26 +241,31 @@
             }
         }
 
-        // Busca Inteligente Abrangente (Título, Tags, Categoria e Descrições)
         function handleSearch(query) {
             const term = query.toLowerCase().trim();
             if (!term) {
                 renderProducts(allProducts);
                 return;
             }
+
             const filtered = allProducts.filter(p => {
                 const title = (p.titulo || '').toLowerCase();
                 const category = (p.categoria || '').toLowerCase();
                 const shortDesc = (p.descricaoCurta || '').toLowerCase();
                 const longDesc = (p.descricaoLongo || p.descricao || '').toLowerCase();
                 const tags = Array.isArray(p.tags) ? p.tags.join(' ').toLowerCase() : '';
-                return title.includes(term) || category.includes(term) || shortDesc.includes(term) || longDesc.includes(term) || tags.includes(term);
+
+                return title.includes(term) || 
+                       category.includes(term) || 
+                       shortDesc.includes(term) || 
+                       longDesc.includes(term) || 
+                       tags.includes(term);
             });
+
             renderProducts(filtered);
         }
 
-        document.getElementById('searchInputDesktop').addEventListener('input', (e) => handleSearch(e.target.value));
-        document.getElementById('searchInputMobile').addEventListener('input', (e) => handleSearch(e.target.value));
+        document.getElementById('searchInput').addEventListener('input', (e) => handleSearch(e.target.value));
 
         function renderProducts(products) {
             const grid = document.getElementById('productGrid');
@@ -279,17 +274,18 @@
             countEl.textContent = `Exibindo ${products.length} produto(s)`;
 
             if (products.length === 0) {
-                grid.innerHTML = '<p class="col-span-full text-center text-slate-500 py-12">Nenhum produto encontrado na busca.</p>';
+                grid.innerHTML = '<p class="col-span-full text-center text-slate-500 py-12">Nenhum produto encontrado com essa palavra-chave.</p>';
                 return;
             }
 
             products.forEach(product => {
                 const card = document.createElement('div');
-                card.className = 'bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden cursor-pointer group';
+                card.className = 'bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group cursor-pointer';
                 card.onclick = () => openModal(product);
+
                 card.innerHTML = `
                     <div class="relative bg-slate-100 p-4 flex items-center justify-center overflow-hidden h-52">
-                        ${product.desconto ? `<span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10 shadow-sm">${product.desconto}</span>` : ''}
+                        ${product.desconto ? `<span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-md shadow-sm z-10">${product.desconto}</span>` : ''}
                         <img src="${product.imagem}" alt="${product.titulo}" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
@@ -302,7 +298,7 @@
                                 <span class="text-lg font-black text-slate-900">R$ ${product.preco}</span>
                                 ${product.precoAntigo ? `<span class="text-xs text-slate-400 line-through">R$ ${product.precoAntigo}</span>` : ''}
                             </div>
-                            <a href="${product.linkShopee}" target="_blank" onclick="event.stopPropagation()" class="w-full bg-slate-900 hover:bg-amber-500 hover:text-slate-950 text-white font-bold text-xs py-2.5 px-3 rounded-xl text-center transition-colors block shadow-sm">
+                            <a href="${product.linkShopee}" target="_blank" onclick="event.stopPropagation()" class="w-full bg-slate-100 hover:bg-amber-500 text-slate-800 hover:text-slate-950 font-bold py-2 px-3 rounded-xl text-xs text-center block transition-colors">
                                 Ver na Shopee
                             </a>
                         </div>
@@ -318,8 +314,9 @@
             document.getElementById('modalTitle').textContent = product.titulo;
             document.getElementById('modalPrice').textContent = `R$ ${product.preco}`;
             document.getElementById('modalOldPrice').textContent = product.precoAntigo ? `R$ ${product.precoAntigo}` : '';
-            document.getElementById('modalDesc').textContent = product.descricaoLongo || product.descricaoCurta || 'Produto de alta qualidade disponível na nossa loja oficial na Shopee.';
+            document.getElementById('modalDesc').textContent = product.descricaoLongo || product.descricaoCurta || 'Detalhes do produto disponível na nossa loja oficial na Shopee.';
             document.getElementById('modalShopeeBtn').href = product.linkShopee;
+            
             document.getElementById('productModal').classList.remove('hidden');
             document.getElementById('productModal').classList.add('flex');
         }
